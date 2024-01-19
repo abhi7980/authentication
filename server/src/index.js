@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const routes = require("./routes");
 
 const {
   AppErrorHandler,
@@ -30,17 +31,21 @@ app.options("*", cors(corsOptions));
   3. APPLICATION ROUTES 🛣️
 */
 // Test route
-app.get("/", function (req, res) {
-  res.send("Hello Welcome to API🙃 !!");
-});
+// app.get("/", function (req, res) {
+//   res.send("Hello Welcome to API🙃 !!");
+// });
+
 // Test Crash route
-app.get("/boom", function (req, res, next) {
-  try {
-    throw new CustomError("Oops! matters are chaotic💥", 400);
-  } catch (error) {
-    next(error);
-  }
-});
+
+// app.get("/boom", function (req, res, next) {
+//   try {
+//     throw new CustomError("Oops! matters are chaotic💥", 400);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+app.use("/api", routes);
 
 /* 
   4. APPLICATION ERROR HANDLING 🚔
